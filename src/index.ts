@@ -1,17 +1,16 @@
-import { Developer } from "./types";
+import { DeveloperInterface } from "./types";
 
-class Dev implements Developer {
+class Developer implements DeveloperInterface {
  energy = 100;
  ENERGY_PER_HOUR = 10;
 
  start(props: { workHours: number; sleepHours: number }) {
   for (let i = 0; i < 5; i++) {
-   console.log(i);
    if (this.energy > props.workHours * this.ENERGY_PER_HOUR) {
     this.work(props.workHours);
     this.sleep(props.sleepHours);
    } else {
-    throw Error("Not enough energy!");
+    return console.error("Not enough energy!");
    }
   }
 
@@ -27,6 +26,6 @@ class Dev implements Developer {
  }
 }
 
-const dev1 = new Dev();
+const developerInstance = new Developer();
 
-dev1.start({ workHours: 8, sleepHours: 6 });
+window.developerInstance = developerInstance;
